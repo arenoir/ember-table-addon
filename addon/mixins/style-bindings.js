@@ -14,7 +14,7 @@ export default Ember.Mixin.create({
     if (Ember.typeOf(value) === 'number') {
       value = value + this.get('unitType');
     }
-    return Ember.String.dasherize("" + styleName) + ":" + value + ";";
+    return (Ember.String.dasherize("" + styleName) + ":" + value + ";");
   },
   applyStyleBindings: function() {
     var lookup, properties, styleBindings, styleComputed, styles,
@@ -42,7 +42,7 @@ export default Ember.Mixin.create({
       });
       styleString = styleTokens.join('');
       if (styleString.length !== 0) {
-        return styleString;
+        return styleString.htmlSafe();
       }
     });
     styleComputed.property.apply(styleComputed, properties);
